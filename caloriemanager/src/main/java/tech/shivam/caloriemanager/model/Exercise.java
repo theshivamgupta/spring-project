@@ -17,6 +17,7 @@ public class Exercise implements Serializable {
     @Column(nullable = false, updatable = false)
     private String exerciseCode;
     private double caloriesBurnt = 0;
+    //A single exercise can only belong to one user
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

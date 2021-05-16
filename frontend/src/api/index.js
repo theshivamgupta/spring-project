@@ -75,3 +75,17 @@ export function addExercise(exerciseDetails, id) {
     })
     .catch((err) => console.error(err));
 }
+
+export function deleteProfile(id) {
+  return fetch(`${API}user/deleteBy/${id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.error(err));
+}

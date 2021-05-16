@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.shivam.caloriemanager.exceptions.UserNotFoundException;
 import tech.shivam.caloriemanager.model.User;
+import tech.shivam.caloriemanager.repo.ExerciseRepo;
 import tech.shivam.caloriemanager.repo.UserRepo;
 
 import java.util.List;
@@ -12,10 +13,13 @@ import java.util.UUID;
 @Service
 public class UserService {
     private final UserRepo userRepo;
-
+    private final ExerciseRepo exerciseRepo;
+    private final ExerciseService exerciseService;
     @Autowired
-    public UserService(UserRepo userRepo) {
+    public UserService(UserRepo userRepo, ExerciseRepo exerciseRepo, ExerciseService exerciseService) {
         this.userRepo = userRepo;
+        this.exerciseRepo = exerciseRepo;
+        this.exerciseService = exerciseService;
     }
 
     public User addUser(User user) {
@@ -41,6 +45,7 @@ public class UserService {
 
     public void deleteById(Long id) {
         userRepo.deleteById(id);
+        exerciseService.deleteByUser(id);
     }
 
 }

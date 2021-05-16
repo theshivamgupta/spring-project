@@ -58,6 +58,11 @@ public class ExerciseService {
         exerciseRepo.deleteById(id);
     }
 
+    public void deleteByUser(Long id) {
+        User user = userRepo.findUserById(id).orElseThrow(() -> new UserNotFoundException(("user not found")));
+        exerciseRepo.deleteByUser(user);
+    }
+
     // Harris-Benedict Formula
     private double calculateCalorie(User user, Exercise exercise) {
         double ans = 66.5 + (13.8 * user.getWeight()) + (5 * user.getHeight());

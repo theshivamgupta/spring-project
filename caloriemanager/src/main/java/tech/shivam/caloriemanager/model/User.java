@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+// to avoid Endless sending of response
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "exercises"})
 public class User implements Serializable {
@@ -20,6 +21,7 @@ public class User implements Serializable {
     @Column(nullable = false, updatable = false)
     private String userCode;
     private double totalCalories = 0;
+    //One user can have many exercise stored
     @OneToMany(mappedBy = "user")
     private List<Exercise> exercises;
 

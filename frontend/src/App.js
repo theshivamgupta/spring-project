@@ -1,5 +1,12 @@
 import React from "react";
-import { addExercise, deleteExercise, getUser, signin, signup } from "./api";
+import {
+  addExercise,
+  deleteExercise,
+  deleteProfile,
+  getUser,
+  signin,
+  signup,
+} from "./api";
 import Modal from "./Modal";
 import UpdateProfile from "./UpdateProfile";
 
@@ -85,6 +92,7 @@ function App() {
     <div>
       {userFound && <Modal setExercises={setExercises} user={user} />}
       {userFound && <UpdateProfile />}
+      {userFound && <DeleteProfile id={user?.id} setExercises={setExercises} />}
       <div className="row">
         <div className="col-md-6 offset-sm-3 text-left">
           <form>
@@ -165,6 +173,23 @@ function App() {
           </div>
         ))}
     </div>
+  );
+}
+
+function DeleteProfile({ id, setExercises }) {
+  function handleDelete() {
+    deleteProfile(id)
+      .then((data) => {
+        console.log(data);
+        setExercises([]);
+      })
+      .catch((err) => console.error(err));
+  }
+
+  return (
+    <button type="button" className="btn btn-danger" onClick={handleDelete}>
+      Delete Profile
+    </button>
   );
 }
 

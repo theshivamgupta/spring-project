@@ -19,4 +19,6 @@ public interface ExerciseRepo extends JpaRepository<Exercise, Long> {
     void deleteById(Long id);
 
     List<Exercise> findExerciseByUser(User user);
+
+    void deleteByUser(User user);
 }
