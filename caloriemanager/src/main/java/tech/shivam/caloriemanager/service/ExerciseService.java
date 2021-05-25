@@ -9,6 +9,7 @@ import tech.shivam.caloriemanager.model.User;
 import tech.shivam.caloriemanager.repo.ExerciseRepo;
 import tech.shivam.caloriemanager.repo.UserRepo;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
@@ -33,7 +34,10 @@ public class ExerciseService {
         exercise.setCaloriesBurnt(burntCalories);
         long millis=System.currentTimeMillis();
         java.sql.Date date=new java.sql.Date(millis);
-        exercise.setRunTime(date);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String text = df.format(date);
+//        System.out.println("The date is: " + text);
+        exercise.setRunTime(text);
         return exerciseRepo.save(exercise);
     }
 
@@ -46,7 +50,7 @@ public class ExerciseService {
         return exerciseRepo.findExerciseById(id).orElseThrow(() -> new ExerciseNotFoundException("exercise not found"));
     }
 
-    public List<Exercise> findExerciseByRunTimeBetween(java.sql.Date date1, java.sql.Date date2) {
+    public List<Exercise> findExerciseByRunTimeBetween(String date1, String date2) {
         return exerciseRepo.findExerciseByRunTimeBetween(date1, date2)
                 .orElseThrow(() -> new ExerciseNotFoundException("No exercises between these dates"));
     }

@@ -13,7 +13,7 @@ public class Exercise implements Serializable {
     private int speed; // in m/s
     private int time; // in sec
     @Column(name = "run_time")
-    private java.sql.Date runTime;
+    private String runTime;
     @Column(nullable = false, updatable = false)
     private String exerciseCode;
     private double caloriesBurnt = 0;
@@ -25,7 +25,7 @@ public class Exercise implements Serializable {
     public Exercise() {
     }
 
-    public Exercise(Long id, int speed, int time, Date runTime) {
+    public Exercise(Long id, int speed, int time, String runTime) {
         this.id = id;
         this.speed = speed;
         this.time = time;
@@ -56,11 +56,11 @@ public class Exercise implements Serializable {
         this.time = time;
     }
 
-    public Date getRunTime() {
+    public String getRunTime() {
         return runTime;
     }
 
-    public void setRunTime(Date runTime) {
+    public void setRunTime(String runTime) {
         this.runTime = runTime;
     }
 

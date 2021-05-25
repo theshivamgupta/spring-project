@@ -14,7 +14,7 @@ public interface ExerciseRepo extends JpaRepository<Exercise, Long> {
 
     //Optional<List<Exercise>> findExerciseByStartDateBetween(String date1, String date2);date2
 
-    Optional<List<Exercise>> findExerciseByRunTimeBetween(java.sql.Date date1, java.sql.Date date2);
+    Optional<List<Exercise>> findExerciseByRunTimeBetween(String date1, String date2);
 
     void deleteById(Long id);
 
